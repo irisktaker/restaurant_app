@@ -10,6 +10,9 @@ TextField buildTextField({
     controller: controller,
     keyboardType: inputType,
     cursorColor: Colors.green,
+    style: const TextStyle(
+      color: Color(0xFF474747),
+    ),
     obscureText: obscureText!,
     decoration: InputDecoration(
       hintText: text,
@@ -22,6 +25,11 @@ TextField buildTextField({
       focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
           color: Colors.grey,
+        ),
+      ),
+      errorBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.red,
         ),
       ),
     ),
