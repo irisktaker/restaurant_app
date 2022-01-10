@@ -5,6 +5,8 @@ TextField buildTextField({
   required TextInputType? inputType,
   required String? text,
   bool? obscureText = false,
+  Widget? suffixIcon,
+  String? errorText,
 }) {
   return TextField(
     controller: controller,
@@ -15,7 +17,9 @@ TextField buildTextField({
     ),
     obscureText: obscureText!,
     decoration: InputDecoration(
+      suffixIcon: suffixIcon,
       hintText: text,
+      errorText: errorText,
       hintStyle: const TextStyle(
         color: Color(0xFF474747),
       ),

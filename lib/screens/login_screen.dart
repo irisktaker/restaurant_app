@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, valid_regexps
 
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/forget_password_screen.dart';
@@ -14,6 +14,10 @@ class LoginScreen extends StatelessWidget {
 
   final TextEditingController? _usernameController = TextEditingController();
   final TextEditingController? _passwordController = TextEditingController();
+  // alphanumeric and _-=@,.;
+  static final validCharacters = RegExp(r'^[a-zA-Z0-9]+$');
+
+  bool _isHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -37,28 +41,26 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const Spacer(flex: 5),
-              SizedBox(
-                height: 115,
-                child: ListView(
-                  children: [
-                    buildTextField(
-                      controller: _usernameController,
-                      text: 'Username',
-                      inputType: TextInputType.name,
-                    ),
-                    const SizedBox(height: 16),
-                    buildTextField(
-                      controller: _passwordController,
-                      text: 'Password',
-                      inputType: TextInputType.visiblePassword,
-                      obscureText: true,
-                    ),
-                  ],
+              buildTextField(
+                controller: _usernameController,
+                text: 'Username',
+                inputType: TextInputType.name,
+              ),
+              const SizedBox(height: 16),
+              buildTextField(
+                controller: _passwordController,
+                text: 'Password',
+                inputType: TextInputType.visiblePassword,
+                obscureText: _isHidden,
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: _isHidden
+                      ? const Icon(Icons.visibility)
+                      : const Icon(Icons.visibility_off),
                 ),
               ),
-              const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(top: 4, bottom: 16.0),
                 child: Text(
                   validateLoginFieldText(),
                   style: TextStyle(
@@ -177,20 +179,21 @@ class LoginScreen extends StatelessWidget {
   }
 
   bool validateLoginField() {
-    if (_usernameController!.text.isEmpty ||
+    // if (_usernameController!.text.isEmpty ||
+    //     (_passwordController!.text.isEmpty)) {
+    //   return false;
+    // }
+    if (_usernameController!.text.isEmpty &&
         _passwordController!.text.isEmpty) {
       return false;
-    } else if (_usernameController!.text == "naser" &&
-        _passwordController!.text == "123") {
-      return true;
     } else {
-      return false;
+      return true;
     }
   }
 
   String validateLoginFieldText() {
-    if (_usernameController!.text == "naser" &&
-        _passwordController!.text == "123") {
+    if (_usernameController!.text.isNotEmpty &&
+        _passwordController!.text.isNotEmpty) {
       return "Correct User Name & Password";
     } else if (_usernameController!.text.isEmpty ||
         _passwordController!.text.isEmpty) {
