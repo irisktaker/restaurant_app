@@ -17,7 +17,6 @@ class CreateAccountScreen extends StatefulWidget {
   @override
   State<CreateAccountScreen> createState() => _CreateAccountScreenState();
 }
-
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
   ///
   final TextEditingController _nameController = TextEditingController();
@@ -25,6 +24,27 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  bool _isPassHidden = true;
+  bool _isConfirmPassHidden = true;
+
+  bool _nameValidate = false,
+      _emailValidate = false,
+      _passValidate = false,
+      _confirmPassValidate = false;
+
+  bool? validation() {
+    _nameController.text.isEmpty ? _nameValidate = true : _nameValidate = false;
+    _emailController.text.isEmpty
+        ? _emailValidate = true
+        : _emailValidate = false;
+    _passwordController.text.isEmpty
+        ? _passValidate = true
+        : _passValidate = false;
+    _confirmPasswordController.text.isEmpty
+        ? _confirmPassValidate = true
+        : _confirmPassValidate = false;
+  }
 
   @override
   void dispose() {
@@ -193,36 +213,4 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       ),
     );
   }
-
-  bool _isPassHidden = true;
-  bool _isConfirmPassHidden = true;
-
-  /// ---------------------------------------------
-
-  bool _nameValidate = false,
-      _emailValidate = false,
-      _passValidate = false,
-      _confirmPassValidate = false;
-
-  bool? validation() {
-    _nameController.text.isEmpty ? _nameValidate = true : _nameValidate = false;
-    _emailController.text.isEmpty
-        ? _emailValidate = true
-        : _emailValidate = false;
-    _passwordController.text.isEmpty
-        ? _passValidate = true
-        : _passValidate = false;
-    _confirmPasswordController.text.isEmpty
-        ? _confirmPassValidate = true
-        : _confirmPassValidate = false;
-  }
-
-  /// ---------------------------------------------
-
-  // bool? validate() {
-  //   _nameController!.text.isEmpty ? false : true;
-  // }
-
-  // String? checkName() =>
-  //     _nameController!.text.isEmpty ? 'Name must not be empty' : null;
 }
