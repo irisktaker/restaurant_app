@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 class HomeBarScreen {
   String? productName;
   String? productPrice;
-  Color? bgColor;
+  List<Color> bgColors;
   String? productImage;
 
   HomeBarScreen(
-      {this.productName, this.productPrice, this.bgColor, this.productImage});
+      {required this.productName,
+      required this.productPrice,
+      required this.bgColors,
+      required this.productImage});
 }
 
 class HomeBarItems {
@@ -15,28 +18,76 @@ class HomeBarItems {
 
   List<HomeBarScreen> smoothiesList = [
     HomeBarScreen(
-      productName: 'Product 1',
-      productPrice: '99.00 JD',
-      bgColor: Colors.green.shade200,
+      productName: 'watermelon',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFF26C9C), Color(0xFFEC90E9)],
       productImage: 'assets/images/Group 2137.png',
     ),
     HomeBarScreen(
-      productName: 'Product 2',
-      productPrice: '19.00 JD',
-      bgColor: Colors.red.shade200,
+      productName: 'mango',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFFD9B8D), Color(0xFFFBBE7E)],
       productImage: 'assets/images/Group 2204.png',
     ),
     HomeBarScreen(
-      productName: 'Product 3',
-      productPrice: '99.00 JD',
-      bgColor: Colors.yellow.shade200,
+      productName: 'blueburry',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFA076E8), Color(0xFFB1C4F8)],
+      productImage: 'assets/images/Group 2206.png',
+    ),
+    HomeBarScreen(
+      productName: 'avocado',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFF5CCD92), Color(0xFFBFE89C)],
       productImage: 'assets/images/Group 2207.png',
     ),
     HomeBarScreen(
-      productName: 'Product 4',
-      productPrice: '49.00 JD',
-      bgColor: Colors.purple.shade200,
+      productName: 'grape',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFA86FDA), Color(0xFFF5B9D5)],
       productImage: 'assets/images/Group 2208.png',
+    ),
+    HomeBarScreen(
+      productName: 'apple',
+      productPrice: '₹70.00',
+      bgColors: const [Color(0xFFF4787C), Color(0xFFFBA6C6)],
+      productImage: 'assets/images/apple.png',
+    ),
+    HomeBarScreen(
+      productName: 'watermelon',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFF26C9C), Color(0xFFEC90E9)],
+      productImage: 'assets/images/watermelon.png',
+    ),
+    HomeBarScreen(
+      productName: 'mango',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFFD9B8D), Color(0xFFFBBE7E)],
+      productImage: 'assets/images/mango.png',
+    ),
+    HomeBarScreen(
+      productName: 'blueburry',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFA076E8), Color(0xFFB1C4F8)],
+      productImage: 'assets/images/blueberry.png',
+    ),
+    HomeBarScreen(
+      productName: 'avocado',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFF5CCD92), Color(0xFFBFE89C)],
+      productImage: 'assets/images/avocado.png',
+    ),
+    HomeBarScreen(
+      productName: 'grapes',
+      productPrice: '₹50.00',
+      bgColors: const [Color(0xFFA86FDA), Color(0xFFF5B9D5)],
+      productImage: 'assets/images/grapes.png',
+    ),
+    HomeBarScreen(
+      productName: 'apple',
+      productPrice: '₹70.00',
+      bgColors: const [Color(0xFFF4787C), Color(0xFFFBA6C6)],
+      productImage: 'assets/images/apple.png',
     ),
   ];
 

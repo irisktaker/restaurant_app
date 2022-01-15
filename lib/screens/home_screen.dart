@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/home_screen_data/home_screen_data.dart';
 
+import 'home_screen_data/selected_index_screen.dart';
+
 HomeBarItems homeBarItems = HomeBarItems();
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
-
   // List<Map> addItem = [
   //   {
   //     'productName': 'Product 1',
@@ -34,29 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
   //   },
   // ];
 
-  Widget _selectedIndexScreen() {
-    if (_selectedIndex == 0) {
-      return ListView.builder(
-        shrinkWrap: true,
-        itemCount: homeBarItems.smoothiesList.length,
-        itemBuilder: (context, index) => buildProductsList(
-          productName: homeBarItems.smoothiesList[index].productName,
-          productPrice: homeBarItems.smoothiesList[index].productPrice,
-          bgColor: homeBarItems.smoothiesList[index].bgColor,
-          productImage: homeBarItems.smoothiesList[index].productImage,
-        ),
-      );
-    } else if (_selectedIndex == 1) {
-      return Container(
-        color: Colors.yellow.shade200,
-      );
-    } else {
-      return Container(
-        color: Colors.green.shade200,
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         title: const Text(
           'Jusbar',
-          style: TextStyle(color: Colors.grey),
+          style: TextStyle(color: Colors.grey, fontFamily: 'Roboto'),
         ),
         actions: [
           IconButton(
@@ -89,10 +66,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
-        child: Column(
-          children: [
-            _selectedIndexScreen(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              topTabTitles(),
+              const SizedBox(height: 24),
+              selectedIndexScreen(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -102,68 +83,45 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.shopping_cart), label: 'Cart'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
-        onTap: (index) => setState(() => _selectedIndex = index),
-        currentIndex: _selectedIndex,
-        fixedColor: Colors.grey,
+        type: BottomNavigationBarType.shifting,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        onTap: (index) => setState(() => selectedIndex = index),
+        currentIndex: selectedIndex,
+        iconSize: 26,
+        selectedItemColor: const Color(0xFFA7BBDB),
+        unselectedItemColor: const Color(0xFFD3D8E0),
       ),
     );
   }
 
-  Column buildProductsList({
-    required String? productName,
-    required String? productPrice,
-    required Color? bgColor,
-    required String? productImage,
-  }) {
-    return Column(
+  Row topTabTitles() {
+    return Row(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Expanded(
-              child: Container(
-                height: 75,
-                decoration: BoxDecoration(
-                  color: bgColor,
-                  borderRadius: BorderRadius.circular(37.5),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 26),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        productName!,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        productPrice!,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+            InkWell(
+              onTap: () {},
+              child: const Text(
+                'smoothies',
+                style: TextStyle(
+                  color: Color(0xFF676767),
+                  fontFamily: 'cocogoose',
+                  fontSize: 16,
                 ),
               ),
             ),
-            const SizedBox(width: 16),
-            SizedBox(
-              width: 75,
-              height: 75,
-              child: Image.asset(
-                productImage!,
+            const SizedBox(height: 2),
+            const Padding(
+              padding: EdgeInsets.only(right: 24.0),
+              child: CircleAvatar(
+                backgroundColor: Color(0xFFEF7CBE),
+                radius: 3.5,
               ),
-            ),
+            )
           ],
-        ),
-        const SizedBox(height: 16),
+        )
       ],
     );
   }
