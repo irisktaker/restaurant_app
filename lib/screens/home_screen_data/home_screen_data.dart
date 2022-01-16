@@ -7,14 +7,15 @@ class HomeBarScreen {
   String productPrice;
   List<Color> bgColors;
   String productImage;
-  void Function()? onTap;
+  // void Function()? onTap;
 
-  HomeBarScreen(
-      {required this.productName,
-      required this.productPrice,
-      required this.bgColors,
-      required this.productImage,
-      this.onTap});
+  HomeBarScreen({
+    required this.productName,
+    required this.productPrice,
+    required this.bgColors,
+    required this.productImage,
+    // this.onTap
+  });
 }
 
 class HomeBarItems {
@@ -28,15 +29,15 @@ class HomeBarItems {
       productPrice: '₹50.00',
       bgColors: const [Color(0xFFF26C9C), Color(0xFFEC90E9)],
       productImage: 'assets/images/Group 2137.png',
-      onTap: () => Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (c, a1, a2) => const ItemCard(),
-          transitionsBuilder: (c, anim, a2, child) =>
-              FadeTransition(opacity: anim, child: child),
-          transitionDuration: const Duration(milliseconds: 500),
-        ),
-      ),
+      // onTap: () => Navigator.push(
+      //   context,
+      //   PageRouteBuilder(
+      //     pageBuilder: (c, a1, a2) => const ItemCard(),
+      //     transitionsBuilder: (c, anim, a2, child) =>
+      //         FadeTransition(opacity: anim, child: child),
+      //     transitionDuration: const Duration(milliseconds: 500),
+      //   ),
+      // ),
     ),
     HomeBarScreen(
       productName: 'mango',
