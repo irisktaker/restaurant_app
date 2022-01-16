@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/home_screen_data/bottom_nav_bar.dart';
-
-import 'home_screen_data/selected_index_screen.dart';
-
-class ItemCard extends StatefulWidget {
-  const ItemCard({Key? key}) : super(key: key);
+class ProductsDetailsScreen extends StatefulWidget {
+  const ProductsDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ItemCard> createState() => _ItemCardState();
+  State<ProductsDetailsScreen> createState() => _ProductsDetailsScreenState();
 }
-
-class _ItemCardState extends State<ItemCard> {
+class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

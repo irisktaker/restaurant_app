@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/forget_password_screen.dart';
+import 'package:restaurant/shared/custom_elevated_button.dart';
+import 'package:restaurant/shared/custom_text_button.dart';
+import 'package:restaurant/shared/custom_text_field.dart';
 
-import '../custom_widgets/custom_elevated_button.dart';
-import '../custom_widgets/custom_text_button.dart';
-import '../custom_widgets/custom_text_field.dart';
 import 'create_account_screen.dart';
-import 'home_screen.dart';
+import 'main_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                       ? Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomeScreen(),
+                            builder: (context) => MainScreen(),
                           ),
                         )
                       : null;

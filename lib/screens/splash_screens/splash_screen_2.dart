@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/custom_widgets/build_slider.dart';
-import 'package:restaurant/custom_widgets/custom_text_button.dart';
+import 'package:restaurant/shared/build_slider.dart';
+import 'package:restaurant/shared/custom_text_button.dart';
 
 import 'splash_screen.dart';
 import 'splash_screen_3.dart';

@@ -6,9 +6,9 @@
 /// https://www.fluttercampus.com/guide/91/how-to-validate-form-textfield-values-flutter/#dart-regex-pattern-to-check-email-address
 
 import 'package:flutter/material.dart';
-import 'package:restaurant/custom_widgets/custom_elevated_button.dart';
-import 'package:restaurant/custom_widgets/custom_text_button.dart';
-import 'package:restaurant/custom_widgets/custom_text_field.dart';
+import 'package:restaurant/shared/custom_elevated_button.dart';
+import 'package:restaurant/shared/custom_text_button.dart';
+import 'package:restaurant/shared/custom_text_field.dart';
 
 // ignore: must_be_immutable
 class CreateAccountScreen extends StatefulWidget {

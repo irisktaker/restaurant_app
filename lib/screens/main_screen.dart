@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/home_screen_data/home_screen_data.dart';
 
-import 'home_screen_data/bottom_nav_bar.dart';
-import 'home_screen_data/selected_index_screen.dart';
+import 'package:restaurant/models/home_screen_data/selected_index_screen.dart';
+import 'package:restaurant/shared/bottom_nav_bar.dart';
 
-HomeBarItems homeBarItems = HomeBarItems();
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainScreenState extends State<MainScreen> {
   // List<Map> addItem = [
   //   {
   //     'productName': 'Product 1',
