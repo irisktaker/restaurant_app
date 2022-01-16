@@ -1,11 +1,16 @@
-import 'package:flutter/material.dart';
-class ProductsDetailsScreen extends StatefulWidget {
-  const ProductsDetailsScreen({Key? key}) : super(key: key);
+// ignore_for_file: must_be_immutable
 
-  @override
-  State<ProductsDetailsScreen> createState() => _ProductsDetailsScreenState();
-}
-class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
+import 'package:flutter/material.dart';
+import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
+
+class ProductsDetailsScreen extends StatelessWidget {
+  ProductModel products;
+  List<ProductModel> allProducts;
+
+  ProductsDetailsScreen(
+      {Key? key, required this.products, required this.allProducts})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -36,20 +41,38 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
           const SizedBox(width: 6),
         ],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            children: [
-              Container(
-                width: size.width * 0.70,
-                height: size.height * 0.60,
-                decoration: BoxDecoration(
-                  color: Colors.pink.shade400,
-                ),
+      body: _buildCarousel(context, 0, size),
+    );
+  }
+
+  Widget _buildCarousel(BuildContext context, int carouselIndex, Size size) {
+    return SizedBox(
+      height: size.height * 0.65,
+      child: PageView.builder(
+        itemCount: allProducts.length,
+        controller: PageController(viewportFraction: 0.8),
+        itemBuilder: (BuildContext context, int itemIndex) {
+          return _boxCard(context, carouselIndex, itemIndex, size);
+        },
+      ),
+    );
+  }
+
+  Widget _boxCard(
+      BuildContext context, int carouselIndex, int itemIndex, Size size) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          children: [
+            Container(
+              width: size.width * 0.70,
+              height: size.height * 0.60,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade400,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

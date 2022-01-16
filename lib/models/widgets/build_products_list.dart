@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
+import 'package:restaurant/models/home_screen_data/smoothies_list.dart';
 import 'package:restaurant/screens/products_details_screen.dart';
 
 Column buildProductsList(ProductModel content, BuildContext context) {
@@ -11,8 +12,12 @@ Column buildProductsList(ProductModel content, BuildContext context) {
           Expanded(
             child: InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (content) => const ProductsDetailsScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductsDetailsScreen(products: content, allProducts: smoothiesList),
+                  ),
+                );
               },
               child: Container(
                 height: 75,
