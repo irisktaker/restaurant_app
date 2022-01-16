@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../item_card.dart';
+
 class HomeBarScreen {
-  String? productName;
-  String? productPrice;
+  String productName;
+  String productPrice;
   List<Color> bgColors;
-  String? productImage;
+  String productImage;
+  void Function()? onTap;
 
   HomeBarScreen(
       {required this.productName,
       required this.productPrice,
       required this.bgColors,
-      required this.productImage});
+      required this.productImage,
+      this.onTap});
 }
 
 class HomeBarItems {
   int index = 0;
+
+  static BuildContext context = context;
 
   List<HomeBarScreen> smoothiesList = [
     HomeBarScreen(
@@ -22,6 +28,15 @@ class HomeBarItems {
       productPrice: '₹50.00',
       bgColors: const [Color(0xFFF26C9C), Color(0xFFEC90E9)],
       productImage: 'assets/images/Group 2137.png',
+      onTap: () => Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (c, a1, a2) => const ItemCard(),
+          transitionsBuilder: (c, anim, a2, child) =>
+              FadeTransition(opacity: anim, child: child),
+          transitionDuration: const Duration(milliseconds: 500),
+        ),
+      ),
     ),
     HomeBarScreen(
       productName: 'mango',
@@ -30,7 +45,7 @@ class HomeBarItems {
       productImage: 'assets/images/Group 2204.png',
     ),
     HomeBarScreen(
-      productName: 'blueburry',
+      productName: 'blueberry',
       productPrice: '₹50.00',
       bgColors: const [Color(0xFFA076E8), Color(0xFFB1C4F8)],
       productImage: 'assets/images/Group 2206.png',
@@ -66,7 +81,7 @@ class HomeBarItems {
       productImage: 'assets/images/mango.png',
     ),
     HomeBarScreen(
-      productName: 'blueburry',
+      productName: 'blueberry',
       productPrice: '₹50.00',
       bgColors: const [Color(0xFFA076E8), Color(0xFFB1C4F8)],
       productImage: 'assets/images/blueberry.png',

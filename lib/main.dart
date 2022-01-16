@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:restaurant/screens/splash_screens/splash_screen.dart';
 
 import 'screens/home_screen.dart';
+import 'screens/item_card.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const SplashScreen(),
+      // home: ItemCard(),
       home: HomeScreen(),
     );
   }
