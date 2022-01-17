@@ -7,12 +7,16 @@ class ProductModel {
   String productPrice;
   List<Color> bgColors;
   String productImage;
+  String productSize;
+  int productCount;
 
   ProductModel({
     required this.productName,
     required this.productPrice,
     required this.bgColors,
     required this.productImage,
+    required this.productSize,
+    required this.productCount,
   });
 
   // static BuildContext context = context;

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, valid_regexps, must_be_immutable
+// ignore_for_file: avoid_print, valid_regexps, must_be_immutable, prefer_final_fields
 
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/forget_password_screen.dart';
@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                       ? Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MainScreen(),
+                            builder: (context) => const MainScreen(),
                           ),
                         )
                       : null;
