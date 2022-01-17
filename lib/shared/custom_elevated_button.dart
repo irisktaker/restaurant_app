@@ -6,13 +6,14 @@ ElevatedButton buildElevatedButton({
   double? width = double.infinity,
   double? height = 44,
   required String? btnText,
+  double radius = 16,
 }) {
   return ElevatedButton(
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(radius),
       ),
     ),
     child: Ink(
@@ -20,7 +21,7 @@ ElevatedButton buildElevatedButton({
         gradient: LinearGradient(
           colors: colors!,
         ),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: Container(
         width: width,

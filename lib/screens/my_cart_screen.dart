@@ -57,10 +57,18 @@ class MyCart extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
                 const SizedBox(height: 24),
-                buildElevatedButton(
-                  onPressed: () {},
-                  btnText: 'Proceed to pay',
-                  colors: [const Color(0xFFF46186), const Color(0xFFEE87D7)],
+                Align(
+                  alignment: Alignment.center,
+                  child: buildElevatedButton(
+                    width: 250,
+                    onPressed: () {},
+                    btnText: 'Proceed to pay',
+                    colors: [
+                      const Color(0xFFF46186),
+                      const Color(0xFFEE87D7),
+                    ],
+                    radius: 40,
+                  ),
                 ),
               ],
             ),

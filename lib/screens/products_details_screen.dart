@@ -5,6 +5,9 @@ import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
 import 'package:restaurant/models/home_screen_data/selected_index_screen.dart';
 import 'package:restaurant/shared/bottom_nav_bar.dart';
 
+import 'package:getwidget/getwidget.dart';
+import 'package:restaurant/shared/custom_elevated_button.dart';
+
 class ProductsDetailsScreen extends StatefulWidget {
   ProductModel products;
   List<ProductModel> allProducts;
@@ -16,6 +19,8 @@ class ProductsDetailsScreen extends StatefulWidget {
   @override
   State<ProductsDetailsScreen> createState() => _ProductsDetailsScreenState();
 }
+
+double _rating = 3;
 
 class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   @override
@@ -70,8 +75,8 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
       BuildContext context, int carouselIndex, int itemIndex, Size size) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Column(
+        padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
+        child: ListView(
           children: [
             Container(
               width: size.width * 0.75,
@@ -117,8 +122,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                             const SizedBox(width: 5),
                             Text(
                               '${widget.allProducts[itemIndex].productSize},\t'
-                              '${widget.allProducts[itemIndex].productCount}x \t'
-                              '${widget.allProducts[itemIndex].productPrice}',
+                                      '${widget.allProducts[itemIndex].productCount}x \t'
+                                      '${widget.allProducts[itemIndex].productPrice}'
+                                  .toString(),
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -127,11 +133,11 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 18),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 40),
                           child: Divider(
-                            height: 1,
-                            color: Colors.grey.shade300,
+                            height: 2,
+                            color: Colors.white,
                           ),
                         ),
                         const SizedBox(height: 18),
@@ -139,6 +145,8 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 40),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
                             children: [
                               Expanded(child: Container()),
                               SizedBox(
@@ -146,7 +154,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                   children: [
                                     IconButton(
                                       onPressed: () {
-                                        widget.allProducts[itemIndex];
+                                        // widget.allProducts[itemIndex];
 
                                         setState(() {
                                           widget.allProducts[itemIndex]
@@ -156,16 +164,20 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                       icon: const Icon(
                                         Icons.remove_circle_outline,
                                         color: Colors.white,
+                                        size: 28,
                                       ),
                                     ),
+                                    const SizedBox(width: 5),
                                     Text(
                                       widget.allProducts[itemIndex].productCount
                                           .toString(),
+                                      textAlign: TextAlign.center,
                                       style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 18,
                                         color: Colors.white,
                                       ),
                                     ),
+                                    const SizedBox(width: 2),
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
@@ -176,16 +188,26 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                       icon: const Icon(
                                         Icons.add_circle_outline,
                                         color: Colors.white,
+                                        size: 28,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              Expanded(child: Container()),
+                              Expanded(flex: 8, child: Container()),
                               SizedBox(
                                 child: Text(
-                                  "${widget.allProducts[itemIndex].productPrice} * ${widget.allProducts[itemIndex].productCount}"
-                                      .toString(),
+                                  widget.allProducts[itemIndex].currency,
+                                  style: const TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  "${widget.allProducts[itemIndex].productPrice * widget.allProducts[itemIndex].productCount}",
                                   style: const TextStyle(
                                     fontSize: 22,
                                     color: Colors.white,
@@ -201,6 +223,41 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                     ),
                   ],
                 ),
+              ),
+            ),
+            const SizedBox(height: 18),
+            GFRating(
+              value: _rating,
+              color: Colors.amber,
+              borderColor: Colors.amber,
+              onChanged: (value) {
+                setState(() {
+                  _rating = value;
+                });
+              },
+            ),
+            const SizedBox(height: 6),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'You have saved 0.54 (12%)',
+                style: TextStyle(
+                  color: Colors.grey.shade700,
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
+            Align(
+              alignment: Alignment.center,
+              child: buildElevatedButton(
+                width: 200,
+                onPressed: () {},
+                btnText: 'Add to Cart',
+                colors: [
+                  const Color(0xFFF46186),
+                  const Color(0xFFEE87D7),
+                ],
+                radius: 40,
               ),
             ),
           ],

@@ -4,11 +4,12 @@ class ProductModel {
   int index = 0;
 
   String productName;
-  String productPrice;
+  double productPrice;
   List<Color> bgColors;
   String productImage;
   String productSize;
   int productCount;
+  String currency;
 
   ProductModel({
     required this.productName,
@@ -17,6 +18,7 @@ class ProductModel {
     required this.productImage,
     required this.productSize,
     required this.productCount,
+    required this.currency,
   });
 
   // static BuildContext context = context;

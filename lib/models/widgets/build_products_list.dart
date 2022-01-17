@@ -15,7 +15,8 @@ Column buildProductsList(ProductModel content, BuildContext context) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductsDetailsScreen(products: content, allProducts: smoothiesList),
+                    builder: (context) => ProductsDetailsScreen(
+                        products: content, allProducts: smoothiesList),
                   ),
                 );
               },
@@ -41,7 +42,7 @@ Column buildProductsList(ProductModel content, BuildContext context) {
                         ),
                       ),
                       Text(
-                        content.productPrice,
+                        content.productPrice.toString(),
                         style: const TextStyle(
                           fontSize: 16,
                           fontFamily: 'cocogoose',
