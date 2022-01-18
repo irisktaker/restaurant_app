@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
 import 'package:restaurant/models/home_screen_data/selected_index_screen.dart';
+import 'package:restaurant/screens/my_cart_screen.dart';
 import 'package:restaurant/shared/bottom_nav_bar.dart';
 
 import 'package:getwidget/getwidget.dart';
@@ -12,9 +13,11 @@ class ProductsDetailsScreen extends StatefulWidget {
   ProductModel products;
   List<ProductModel> allProducts;
 
-  ProductsDetailsScreen(
-      {Key? key, required this.products, required this.allProducts})
-      : super(key: key);
+  ProductsDetailsScreen({
+    Key? key,
+    required this.products,
+    required this.allProducts,
+  }) : super(key: key);
 
   @override
   State<ProductsDetailsScreen> createState() => _ProductsDetailsScreenState();
@@ -27,32 +30,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_outlined,
-            color: Colors.grey,
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'Water Melon',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.grey,
-            ),
-          ),
-          const SizedBox(width: 6),
-        ],
-      ),
+      appBar: productDetailsAppBar(context, selectedIndex),
       body: _buildCarousel(context, selectedIndex, size),
       bottomNavigationBar: bottomNavBar(
         onTap: (index) => setState(() => selectedIndex = index),
@@ -68,6 +46,41 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
       itemBuilder: (BuildContext context, int itemIndex) {
         return _boxCard(context, carouselIndex, itemIndex, size);
       },
+    );
+  }
+
+  AppBar productDetailsAppBar(BuildContext context, int itemIndex) {
+    return AppBar(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back_outlined,
+          color: Colors.grey,
+        ),
+        onPressed: () {
+          // widget.allProducts[itemIndex].productCount >= 1
+          //     ? widget.allProducts[itemIndex].productCount = 1
+          //     : widget.allProducts[itemIndex].productCount;
+
+          Navigator.pop(context);
+        },
+      ),
+      title: Text(
+        widget.products.productName,
+        style: const TextStyle(color: Colors.black),
+      ),
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.white,
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.notifications,
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(width: 6),
+      ],
     );
   }
 
@@ -156,10 +169,16 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                                       onPressed: () {
                                         // widget.allProducts[itemIndex];
 
-                                        setState(() {
-                                          widget.allProducts[itemIndex]
-                                              .productCount--;
-                                        });
+                                        setState(
+                                          () {
+                                            widget.allProducts[itemIndex]
+                                                        .productCount <=
+                                                    0
+                                                ? 0
+                                                : widget.allProducts[itemIndex]
+                                                    .productCount--;
+                                          },
+                                        );
                                       },
                                       icon: const Icon(
                                         Icons.remove_circle_outline,
@@ -251,7 +270,17 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
               alignment: Alignment.center,
               child: buildElevatedButton(
                 width: 200,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (c, a1, a2) => const MyCart(),
+                      transitionsBuilder: (c, anim, a2, child) =>
+                          FadeTransition(opacity: anim, child: child),
+                      transitionDuration: const Duration(milliseconds: 500),
+                    ),
+                  );
+                },
                 btnText: 'Add to Cart',
                 colors: [
                   const Color(0xFFF46186),

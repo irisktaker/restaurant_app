@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
               shrinkWrap: true,
               itemCount: smoothiesList.length,
               itemBuilder: (context, index) =>
-                  buildProductsList(smoothiesList[index], context),
+                  buildProductsList(smoothiesList[index], context, index),
             ),
           ],
         ),

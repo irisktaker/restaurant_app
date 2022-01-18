@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProductModel {
   int index = 0;
-
+  
   String productName;
   double productPrice;
   List<Color> bgColors;

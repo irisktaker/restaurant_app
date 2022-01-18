@@ -3,7 +3,7 @@ import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
 import 'package:restaurant/models/home_screen_data/smoothies_list.dart';
 import 'package:restaurant/screens/products_details_screen.dart';
 
-Column buildProductsList(ProductModel content, BuildContext context) {
+Column buildProductsList(ProductModel content, BuildContext context, int index) {
   return Column(
     children: [
       Row(
