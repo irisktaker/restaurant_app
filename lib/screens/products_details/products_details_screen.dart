@@ -7,7 +7,9 @@ import 'package:restaurant/screens/cart/cart_screen.dart';
 
 import 'package:getwidget/getwidget.dart';
 import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
+import 'package:restaurant/utils/buttons/add_to_cart_button.dart';
 import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
+import 'package:restaurant/utils/stars_rating/stars_rating.dart';
 
 class ProductsDetailsScreen extends StatefulWidget {
   int cardIndex;
@@ -25,8 +27,6 @@ class ProductsDetailsScreen extends StatefulWidget {
   State<ProductsDetailsScreen> createState() => _ProductsDetailsScreenState();
 }
 
-double _rating = 3;
-
 class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
         children: [
           _buildCarousel(context, selectedIndex, size),
           const SizedBox(height: 18),
-          starsRating(),
+          const StarsRating(),
           const SizedBox(height: 6),
           Align(
             alignment: Alignment.center,
@@ -54,22 +54,6 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
       ),
       bottomNavigationBar:
           bottomNavBar(onTap: (index) => setState(() => selectedIndex = index)),
-    );
-  }
-
-  Widget _buildCarousel(BuildContext context, int carouselIndex, Size size) {
-    return SizedBox(
-      width: size.width * 1,
-      height: size.height * 0.60,
-      child: PageView.builder(
-        itemCount: widget.allProducts.length,
-        controller: PageController(
-            viewportFraction: 0.80, initialPage: widget.cardIndex),
-        onPageChanged: (value) => setState(() => widget.cardIndex = value),
-        itemBuilder: (BuildContext context, int itemIndex) {
-          return _boxCard(context, carouselIndex, itemIndex, size);
-        },
-      ),
     );
   }
 
@@ -96,6 +80,22 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
         ),
         const SizedBox(width: 6),
       ],
+    );
+  }
+
+  Widget _buildCarousel(BuildContext context, int carouselIndex, Size size) {
+    return SizedBox(
+      width: size.width * 1,
+      height: size.height * 0.60,
+      child: PageView.builder(
+        itemCount: widget.allProducts.length,
+        controller: PageController(
+            viewportFraction: 0.80, initialPage: widget.cardIndex),
+        onPageChanged: (value) => setState(() => widget.cardIndex = value),
+        itemBuilder: (BuildContext context, int itemIndex) {
+          return _boxCard(context, carouselIndex, itemIndex, size);
+        },
+      ),
     );
   }
 
@@ -249,45 +249,6 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  GFRating starsRating() {
-    return GFRating(
-      value: _rating,
-      color: Colors.amber,
-      borderColor: Colors.amber,
-      onChanged: (value) {
-        setState(() {
-          _rating = value;
-        });
-      },
-    );
-  }
-
-  Align addToCartButton(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: buildElevatedButton(
-        width: 200,
-        onPressed: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (c, a1, a2) => const CartScreen(),
-              transitionsBuilder: (c, anim, a2, child) =>
-                  FadeTransition(opacity: anim, child: child),
-              transitionDuration: const Duration(milliseconds: 500),
-            ),
-          );
-        },
-        btnText: 'Add to Cart',
-        colors: [
-          const Color(0xFFF46186),
-          const Color(0xFFEE87D7),
-        ],
-        radius: 40,
       ),
     );
   }

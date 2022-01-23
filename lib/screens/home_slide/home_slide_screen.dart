@@ -44,8 +44,11 @@ class HomePage extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               itemCount: smoothiesList.length,
-              itemBuilder: (context, index) =>
-                  buildProductsList(smoothiesList[index], context, index),
+              itemBuilder: (context, index) => buildProductsList(
+                smoothiesList[index],
+                context,
+                index,
+              ),
             ),
           ],
         ),
