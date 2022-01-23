@@ -17,7 +17,7 @@ Column buildProductsList(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ProductsDetailsScreen(
-                        products: content, allProducts: smoothiesList),
+                        products: content, allProducts: smoothiesList, cardIndex: index,),
                   ),
                 );
               },
