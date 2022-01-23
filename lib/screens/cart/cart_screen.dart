@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/shared/custom_app_bar.dart';
-import 'package:restaurant/shared/custom_elevated_button.dart';
+import 'package:restaurant/utils/app_bar/custom_app_bar.dart';
+import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
 
-import 'payment_screen.dart';
+import '../payment/payment_screen.dart';
 
-class MyCart extends StatelessWidget {
-  const MyCart({Key? key}) : super(key: key);
+class CartScreen extends StatelessWidget {
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +39,7 @@ class MyCart extends StatelessWidget {
                 const EdgeInsets.only(top: 24, right: 20, left: 20, bottom: 10),
             color: Colors.grey.shade50,
             child: ListView(
+              shrinkWrap: true,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

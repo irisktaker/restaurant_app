@@ -3,20 +3,23 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
 import 'package:restaurant/models/home_screen_data/selected_index_screen.dart';
-import 'package:restaurant/screens/my_cart_screen.dart';
-import 'package:restaurant/shared/bottom_nav_bar.dart';
+import 'package:restaurant/screens/cart/cart_screen.dart';
 
 import 'package:getwidget/getwidget.dart';
-import 'package:restaurant/shared/custom_elevated_button.dart';
+import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
+import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
 
 class ProductsDetailsScreen extends StatefulWidget {
   ProductModel products;
   List<ProductModel> allProducts;
 
+  // int indexOfProduct;
+
   ProductsDetailsScreen({
     Key? key,
     required this.products,
     required this.allProducts,
+    // required this.indexOfProduct,
   }) : super(key: key);
 
   @override
@@ -30,7 +33,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: productDetailsAppBar(context, selectedIndex),
+      appBar: productDetailsAppBar(context),
       body: _buildCarousel(context, selectedIndex, size),
       bottomNavigationBar: bottomNavBar(
         onTap: (index) => setState(() => selectedIndex = index),
@@ -41,15 +44,14 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   Widget _buildCarousel(BuildContext context, int carouselIndex, Size size) {
     return PageView.builder(
       itemCount: widget.allProducts.length,
-      controller:
-          PageController(viewportFraction: 0.80, initialPage: selectedIndex),
+      controller: PageController(viewportFraction: 0.80, initialPage: 3),
       itemBuilder: (BuildContext context, int itemIndex) {
         return _boxCard(context, carouselIndex, itemIndex, size);
       },
     );
   }
 
-  AppBar productDetailsAppBar(BuildContext context, int itemIndex) {
+  AppBar productDetailsAppBar(BuildContext context) {
     return AppBar(
       leading: IconButton(
         icon: const Icon(
@@ -92,7 +94,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
         child: ListView(
           children: [
             Container(
-              width: size.width * 0.75,
+              width: size.width * 0.80,
               height: size.height * 0.55,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
@@ -226,7 +228,10 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                               ),
                               SizedBox(
                                 child: Text(
-                                  "${widget.allProducts[itemIndex].productPrice * widget.allProducts[itemIndex].productCount}",
+                                  (widget.allProducts[itemIndex].productPrice *
+                                          widget.allProducts[itemIndex]
+                                              .productCount)
+                                      .toStringAsFixed(2),
                                   style: const TextStyle(
                                     fontSize: 22,
                                     color: Colors.white,
@@ -271,10 +276,10 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
               child: buildElevatedButton(
                 width: 200,
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (c, a1, a2) => const MyCart(),
+                      pageBuilder: (c, a1, a2) => const CartScreen(),
                       transitionsBuilder: (c, anim, a2, child) =>
                           FadeTransition(opacity: anim, child: child),
                       transitionDuration: const Duration(milliseconds: 500),
@@ -295,3 +300,11 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
     );
   }
 }
+
+/// mvc  | mvp  | mvvc | Fiber |  bloc
+/// bloc -> model -> class of objects
+///       -> view -> ui
+///       -> bloc -> business code
+///       -> service -> api ..
+/// 
+///  search on flutter bloc 

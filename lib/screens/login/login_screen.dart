@@ -1,13 +1,14 @@
 // ignore_for_file: avoid_print, valid_regexps, must_be_immutable, prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/forget_password_screen.dart';
-import 'package:restaurant/shared/custom_elevated_button.dart';
-import 'package:restaurant/shared/custom_text_button.dart';
-import 'package:restaurant/shared/custom_text_field.dart';
+import 'package:restaurant/screens/create_account/create_account_screen.dart';
+import 'package:restaurant/screens/forget_password/forget_password_screen.dart';
+import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
+import 'package:restaurant/utils/buttons/custom_text_button.dart';
+import 'package:restaurant/utils/text_field/custom_text_field.dart';
 
-import 'create_account_screen.dart';
-import 'main_screen.dart';
+
+import '../home/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -75,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                       ? Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MainScreen(),
+                            builder: (context) => const HomeScreen(),
                           ),
                         )
                       : null;

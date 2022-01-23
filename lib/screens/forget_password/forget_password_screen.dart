@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:restaurant/shared/custom_elevated_button.dart';
-import 'package:restaurant/shared/custom_text_field.dart';
+import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
+import 'package:restaurant/utils/text_field/custom_text_field.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({Key? key}) : super(key: key);
