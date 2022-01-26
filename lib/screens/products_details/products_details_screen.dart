@@ -1,8 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
-import 'package:restaurant/models/home_screen_data/selected_index_screen.dart';
+import 'package:restaurant/screens/home/home_screen_data.dart';
+import 'package:restaurant/models/selected_index_screen.dart';
 
 import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
 import 'package:restaurant/utils/buttons/add_to_cart_button.dart';

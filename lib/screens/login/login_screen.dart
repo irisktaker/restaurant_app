@@ -3,22 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/create_account/create_account_screen.dart';
 import 'package:restaurant/screens/forget_password/forget_password_screen.dart';
+import 'package:restaurant/screens/login/login_bloc.dart';
 import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
 import 'package:restaurant/utils/buttons/custom_text_button.dart';
 import 'package:restaurant/utils/text_field/custom_text_field.dart';
-
 
 import '../home/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
-  final TextEditingController? _usernameController = TextEditingController();
-  final TextEditingController? _passwordController = TextEditingController();
-  // alphanumeric and _-=@,.;
-  static final validCharacters = RegExp(r'^[a-zA-Z0-9]+$');
-
-  bool _isHidden = true;
+  LoginScreenBloc _bloc = LoginScreenBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +38,19 @@ class LoginScreen extends StatelessWidget {
               ),
               const Spacer(flex: 5),
               buildTextField(
-                controller: _usernameController,
+                controller: _bloc.usernameController,
                 text: 'Username',
                 inputType: TextInputType.name,
               ),
               const SizedBox(height: 16),
               buildTextField(
-                controller: _passwordController,
+                controller: _bloc.passwordController,
                 text: 'Password',
                 inputType: TextInputType.visiblePassword,
-                obscureText: _isHidden,
+                obscureText: _bloc.isHidden,
                 suffixIcon: IconButton(
                   onPressed: () {},
-                  icon: _isHidden
+                  icon: _bloc.isHidden
                       ? const Icon(Icons.visibility)
                       : const Icon(Icons.visibility_off),
                 ),
@@ -63,16 +58,18 @@ class LoginScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 4, bottom: 16.0),
                 child: Text(
-                  validateLoginFieldText(),
+                  _bloc.validateLoginFieldText(),
                   style: TextStyle(
-                      color: validateLoginFieldColor(validateLoginFieldText())),
+                      color: _bloc.validateLoginFieldColor(
+                          _bloc.validateLoginFieldText())),
                 ),
               ),
               const Spacer(flex: 1),
               buildElevatedButton(
                 onPressed: () {
                   print('hi there');
-                  validateLoginField()
+                  _bloc.validateLoginField(_bloc.usernameController!.text,
+                          _bloc.passwordController!.text)
                       ? Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -82,7 +79,8 @@ class LoginScreen extends StatelessWidget {
                       : null;
                 },
                 btnText: 'Login',
-                colors: validateLoginField()
+                colors: _bloc.validateLoginField(_bloc.usernameController!.text,
+                        _bloc.passwordController!.text)
                     ? [const Color(0xFFF46186), const Color(0xFFEE87D7)]
                     : [
                         const Color.fromARGB(255, 119, 118, 118),
@@ -177,38 +175,5 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  bool validateLoginField() {
-    // if (_usernameController!.text.isEmpty ||
-    //     (_passwordController!.text.isEmpty)) {
-    //   return false;
-    // }
-    if (_usernameController!.text.isEmpty &&
-        _passwordController!.text.isEmpty) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  String validateLoginFieldText() {
-    if (_usernameController!.text.isNotEmpty &&
-        _passwordController!.text.isNotEmpty) {
-      return "Correct User Name & Password";
-    } else if (_usernameController!.text.isEmpty ||
-        _passwordController!.text.isEmpty) {
-      return "";
-    } else {
-      return "Wrong User Name & Password";
-    }
-  }
-
-  Color validateLoginFieldColor(String msg) {
-    if (msg == "Correct User Name & Password") {
-      return Colors.green;
-    } else {
-      return Colors.red;
-    }
   }
 }

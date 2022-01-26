@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/home_screen_data/selected_index_screen.dart';
+import '../../models/selected_index_screen.dart';
 
 BottomNavigationBar bottomNavBar({required void Function(int)? onTap,}) {
     return BottomNavigationBar(

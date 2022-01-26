@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
-import 'package:restaurant/models/home_screen_data/smoothies_list.dart';
+import 'package:restaurant/screens/home/home_screen_data.dart';
+import 'package:restaurant/screens/home/smoothies_list.dart';
 import 'package:restaurant/screens/products_details/products_details_screen.dart';
 
 Column buildProductsList(

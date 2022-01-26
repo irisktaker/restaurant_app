@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/models/home_screen_data/smoothies_list.dart';
+import 'package:restaurant/screens/home/smoothies_list.dart';
 
 import 'package:restaurant/utils/app_bar/custom_app_bar.dart';
 import 'package:restaurant/utils/tab_bar/top_tab_title_scree.dart';
-import 'package:restaurant/utils/widgets/build_products_list.dart';
+import 'package:restaurant/screens/home/widgets/build_products_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

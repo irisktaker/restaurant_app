@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/home_slide/home_slide_screen.dart';
+import 'package:restaurant/screens/home/home_slide/home_slide_screen.dart';
 import 'package:restaurant/screens/cart/cart_screen.dart';
 
 int selectedIndex = 0;

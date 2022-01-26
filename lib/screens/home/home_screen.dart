@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:restaurant/models/home_screen_data/selected_index_screen.dart';
+import 'package:restaurant/models/selected_index_screen.dart';
 import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
 
 
