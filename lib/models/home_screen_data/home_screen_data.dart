@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProductModel {
   int index = 0;
-  
+
   String productName;
   double productPrice;
   List<Color> bgColors;
@@ -17,8 +17,8 @@ class ProductModel {
     required this.bgColors,
     required this.productImage,
     required this.productSize,
-    required this.productCount,
-    required this.currency,
+    this.productCount = 0,
+    this.currency = '₹',
   });
 
   // static BuildContext context = context;

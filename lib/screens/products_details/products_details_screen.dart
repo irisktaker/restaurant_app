@@ -3,15 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/home_screen_data/home_screen_data.dart';
 import 'package:restaurant/models/home_screen_data/selected_index_screen.dart';
-import 'package:restaurant/screens/cart/cart_screen.dart';
 
-import 'package:getwidget/getwidget.dart';
 import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
 import 'package:restaurant/utils/buttons/add_to_cart_button.dart';
-import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
 import 'package:restaurant/utils/stars_rating/stars_rating.dart';
 
 class ProductsDetailsScreen extends StatefulWidget {
+  ///
   int cardIndex;
   ProductModel products;
   List<ProductModel> allProducts;
@@ -52,8 +50,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
           addToCartButton(context),
         ],
       ),
-      bottomNavigationBar:
-          bottomNavBar(onTap: (index) => setState(() => selectedIndex = index)),
+      bottomNavigationBar: bottomNavBar(
+        onTap: (index) => setState(() => selectedIndex = index),
+      ),
     );
   }
 
@@ -86,7 +85,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
   Widget _buildCarousel(BuildContext context, int carouselIndex, Size size) {
     return SizedBox(
       width: size.width * 1,
-      height: size.height * 0.60,
+      height: size.height * 0.55,
       child: PageView.builder(
         itemCount: widget.allProducts.length,
         controller: PageController(
@@ -111,7 +110,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 70),
+          padding: const EdgeInsets.only(top: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
