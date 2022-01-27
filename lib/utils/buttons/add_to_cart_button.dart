@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/cart/cart_screen.dart';
-
+import 'package:restaurant/screens/home/data/smoothies_list.dart';
 import 'custom_elevated_button.dart';
 
 Align addToCartButton(BuildContext context) {
@@ -12,7 +12,9 @@ Align addToCartButton(BuildContext context) {
         Navigator.push(
           context,
           PageRouteBuilder(
-            pageBuilder: (c, a1, a2) => const CartScreen(),
+            pageBuilder: (c, a1, a2) => CartScreen(
+              productList: smoothiesList,
+            ),
             transitionsBuilder: (c, anim, a2, child) =>
                 FadeTransition(opacity: anim, child: child),
             transitionDuration: const Duration(milliseconds: 500),

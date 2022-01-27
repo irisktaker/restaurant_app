@@ -1,14 +1,18 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/home/home_screen_data.dart';
+import 'package:restaurant/screens/home/data/home_screen_data.dart';
 import 'package:restaurant/models/selected_index_screen.dart';
 
 import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
 import 'package:restaurant/utils/buttons/add_to_cart_button.dart';
 import 'package:restaurant/utils/stars_rating/stars_rating.dart';
 
+import 'products_details_bloc.dart';
+
 class ProductsDetailsScreen extends StatefulWidget {
+  final ProductsDetailsScreenBloc _bloc = ProductsDetailsScreenBloc();
+
   ///
   int cardIndex;
   ProductModel products;
@@ -231,9 +235,9 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
                     ),
                     SizedBox(
                       child: Text(
-                        (widget.allProducts[itemIndex].productPrice *
-                                widget.allProducts[itemIndex].productCount)
-                            .toStringAsFixed(2),
+                        widget._bloc.calculatePrice(
+                            widget.allProducts[itemIndex].productPrice,
+                            widget.allProducts[itemIndex].productCount),
                         style: const TextStyle(
                           fontSize: 22,
                           color: Colors.white,
