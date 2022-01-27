@@ -1,5 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/cart/cart_bloc.dart';
+import 'package:restaurant/screens/home/data/home_screen_data.dart';
 // class AddToCartProductContainer extends StatefulWidget {
 //   const AddToCartProductContainer({
 //     Key? key,
@@ -20,7 +23,14 @@ import 'package:restaurant/screens/cart/cart_bloc.dart';
 CartScreenBloc _bloc = CartScreenBloc();
 
 class MyCartProduct extends StatefulWidget {
-  const MyCartProduct({Key? key}) : super(key: key);
+  int itemIndex;
+  List<ProductModel> filterProductList;
+
+  MyCartProduct({
+    Key? key,
+    required this.filterProductList,
+    required this.itemIndex,
+  }) : super(key: key);
 
   @override
   _MyCartProductState createState() => _MyCartProductState();
@@ -29,6 +39,7 @@ class MyCartProduct extends StatefulWidget {
 class _MyCartProductState extends State<MyCartProduct> {
   @override
   Widget build(BuildContext context) {
+    _bloc.filterList(widget.filterProductList);
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -59,12 +70,12 @@ class _MyCartProductState extends State<MyCartProduct> {
                   children: [
                     Expanded(flex: 1, child: Container()),
                     Image.asset(
-                      'assets/images/apple.png',
+                      // 'assets/images/apple.png',
 
                       // the problem in the index it's = 0
                       // and it's not the index of the list
-                      // _bloc.filterProductList[index].productImage,
-
+                      widget.filterProductList[widget.itemIndex].productImage,
+                      // _bloc.filterProductList[widget.itemIndex].productImage,
                       width: 60,
                       height: 60,
                     ),
@@ -75,7 +86,9 @@ class _MyCartProductState extends State<MyCartProduct> {
                       children: [
                         Text(
                           // _bloc.filterProductList[itemIndex].productName,
-                          'test',
+                          widget
+                              .filterProductList[widget.itemIndex].productName,
+                          // 'test',
                           style: TextStyle(
                             color: Colors.grey.shade800,
                           ),
@@ -95,12 +108,17 @@ class _MyCartProductState extends State<MyCartProduct> {
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              // '${_bloc.filterProductList[itemIndex].productSize},\t'
-                              //         '${_bloc.filterProductList[itemIndex].productCount}x \t'
-                              //         '${_bloc.filterProductList[itemIndex].productPrice}'
-                              // .toString(),
+                              // '${_bloc.filterProductList[widget.itemIndex].productSize},\t'
+                              //         '${_bloc.filterProductList[widget.itemIndex].productCount}x \t'
+                              //         '${_bloc.filterProductList[widget.itemIndex].productPrice}'
+                              //     .toString(),
 
-                              '200ml, 1x ₹50.00',
+                              '${widget.filterProductList[widget.itemIndex].productSize},\t'
+                                      '${widget.filterProductList[widget.itemIndex].productCount}x \t'
+                                      '${widget.filterProductList[widget.itemIndex].productPrice}'
+                                  .toString(),
+
+                              // '200ml, 1x ₹50.00',
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey.shade700,
@@ -113,9 +131,11 @@ class _MyCartProductState extends State<MyCartProduct> {
                     Expanded(flex: 8, child: Container()),
                     IconButton(
                       onPressed: () {
-                        setState(() {
-                          _bloc.filterProductList.length - 1;
-                        });
+                        // setState(() {
+                        //   ///
+                        //   ///
+                        //   _bloc.filterProductList.length - 1;
+                        // });
                         print(_bloc.filterProductList.length);
                       },
                       icon: Icon(
@@ -140,15 +160,36 @@ class _MyCartProductState extends State<MyCartProduct> {
                       child: Row(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(
+                                () {
+                                  widget.filterProductList[widget.itemIndex]
+                                              .productCount <=
+                                          0
+                                      ? 0
+                                      : widget
+                                          .filterProductList[widget.itemIndex]
+                                          .productCount--;
+                                },
+                              );
+                            },
                             icon: Icon(
                               Icons.remove_circle_outline,
                               color: Colors.grey.shade500,
                             ),
                           ),
-                          const Text('1'),
+                          Text(
+                            widget.filterProductList[widget.itemIndex]
+                                .productCount
+                                .toString(),
+                          ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                widget.filterProductList[widget.itemIndex]
+                                    .productCount++;
+                              });
+                            },
                             icon: Icon(
                               Icons.add_circle_outline,
                               color: Colors.grey.shade500,
@@ -157,9 +198,13 @@ class _MyCartProductState extends State<MyCartProduct> {
                         ],
                       ),
                     ),
-                    const Text(
-                      '₹100.00',
-                      style: TextStyle(
+                    Text(
+                      _bloc.calculatePrice(
+                          widget
+                              .filterProductList[widget.itemIndex].productPrice,
+                          widget.filterProductList[widget.itemIndex]
+                              .productCount),
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),

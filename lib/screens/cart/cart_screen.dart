@@ -23,7 +23,7 @@ class CartScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     _bloc.filterList(productList);
-    // _bloc.filterProductList;
+    _bloc.filterProductList;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
@@ -44,7 +44,12 @@ class CartScreen extends StatelessWidget {
               controller: _scrollController,
               itemCount: _bloc.filterProductList.length,
               itemBuilder: (context, index) {
-                return const MyCartProduct();
+                print(
+                    "_bloc.filterProductList.length = ${_bloc.filterProductList.length}");
+                return MyCartProduct(
+                  filterProductList: _bloc.filterProductList,
+                  itemIndex: index,
+                );
               },
             ),
           ),

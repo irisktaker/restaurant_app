@@ -11,6 +11,10 @@ class CartScreenBloc {
       }
     }
   }
+  
+  String calculatePrice(double productPrice, int productQuantity) {
+    return (productPrice * productQuantity).toStringAsFixed(2);
+  }
 
   // #2
 
