@@ -44,7 +44,7 @@ class CartScreen extends StatelessWidget {
               controller: _scrollController,
               itemCount: _bloc.filterProductList.length,
               itemBuilder: (context, index) {
-                return addToCartProductContainer(size);
+                return const MyCartProduct();
               },
             ),
           ),
