@@ -20,7 +20,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScrollController _scrollController = ScrollController();
-    Size size = MediaQuery.of(context).size;
 
     _bloc.filterList(productList);
     _bloc.filterProductList;
@@ -53,7 +52,7 @@ class CartScreen extends StatelessWidget {
               },
             ),
           ),
-          yourOrderBox(size, context)
+          const YourOrderBox(),
         ],
       ),
     );

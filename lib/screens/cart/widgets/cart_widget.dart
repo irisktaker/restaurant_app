@@ -41,6 +41,7 @@ class _MyCartProductState extends State<MyCartProduct> {
   Widget build(BuildContext context) {
     _bloc.filterList(widget.filterProductList);
     Size size = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
@@ -130,14 +131,7 @@ class _MyCartProductState extends State<MyCartProduct> {
                     ),
                     Expanded(flex: 8, child: Container()),
                     IconButton(
-                      onPressed: () {
-                        // setState(() {
-                        //   ///
-                        //   ///
-                        //   _bloc.filterProductList.length - 1;
-                        // });
-                        print(_bloc.filterProductList.length);
-                      },
+                      onPressed: () {},
                       icon: Icon(
                         Icons.clear,
                         color: Colors.red.shade600,
@@ -199,11 +193,7 @@ class _MyCartProductState extends State<MyCartProduct> {
                       ),
                     ),
                     Text(
-                      _bloc.calculatePrice(
-                          widget
-                              .filterProductList[widget.itemIndex].productPrice,
-                          widget.filterProductList[widget.itemIndex]
-                              .productCount),
+                      calcProductMultiplyWithQty(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -217,5 +207,11 @@ class _MyCartProductState extends State<MyCartProduct> {
         ),
       ),
     );
+  }
+
+  String calcProductMultiplyWithQty() {
+    return _bloc.calculatePrice(
+        widget.filterProductList[widget.itemIndex].productPrice,
+        widget.filterProductList[widget.itemIndex].productCount);
   }
 }

@@ -1,15 +1,27 @@
-  import 'package:flutter/material.dart';
+// ignore_for_file: must_be_immutable
+
+import 'package:flutter/material.dart';
 import 'package:restaurant/screens/payment/payment_screen.dart';
 import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
 
 import 'your_orders_details_widget.dart';
 
-Widget yourOrderBox(Size size, BuildContext context) {
+class YourOrderBox extends StatefulWidget {
+  const YourOrderBox({Key? key}) : super(key: key);
+
+  @override
+  _YourOrderBoxState createState() => _YourOrderBoxState();
+}
+
+class _YourOrderBoxState extends State<YourOrderBox> {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       width: size.width,
       height: size.height * 0.40,
-      padding:
-          const EdgeInsets.only(top: 24, right: 20, left: 20, bottom: 10),
+      padding: const EdgeInsets.only(top: 24, right: 20, left: 20, bottom: 10),
       color: Colors.grey.shade50,
       child: SingleChildScrollView(
         child: Column(
@@ -23,7 +35,10 @@ Widget yourOrderBox(Size size, BuildContext context) {
               ),
             ),
             const SizedBox(height: 16),
-            yourOrdersDetails(text: 'Bill Total', price: '₹150.00'),
+            yourOrdersDetails(
+              text: 'Bill Total',
+              price: '₹150.00',
+            ),
             const Divider(height: 2),
             yourOrdersDetails(text: 'Discount', price: '0.00'),
             const Divider(height: 2),
@@ -61,3 +76,4 @@ Widget yourOrderBox(Size size, BuildContext context) {
       ),
     );
   }
+}

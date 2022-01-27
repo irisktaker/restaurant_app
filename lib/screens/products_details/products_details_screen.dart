@@ -166,7 +166,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
               ),
               const SizedBox(height: 18),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.baseline,

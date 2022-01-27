@@ -2,6 +2,7 @@ import 'package:restaurant/screens/home/data/home_screen_data.dart';
 
 class CartScreenBloc {
   // #3
+
   List<ProductModel> filterProductList = [];
 
   void filterList(List<ProductModel> productList) {
@@ -11,7 +12,7 @@ class CartScreenBloc {
       }
     }
   }
-  
+
   String calculatePrice(double productPrice, int productQuantity) {
     return (productPrice * productQuantity).toStringAsFixed(2);
   }
