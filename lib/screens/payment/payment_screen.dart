@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant/models/selected_index_screen.dart';
 import 'package:restaurant/utils/app_bar/custom_app_bar.dart';
+import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
 
 class PaymentScreen extends StatefulWidget {
   PaymentScreen({Key? key}) : super(key: key);
@@ -125,13 +127,151 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 flex: 3,
                 child: Container(
                   width: size.width,
-                  color: Colors.yellow.shade100,
-                  child: Text(""),
+                  height: size.height,
+                  margin:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.white60,
+                    boxShadow: const [
+                      BoxShadow(color: Colors.white10),
+                    ],
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: DefaultTextStyle(
+                    style: const TextStyle(fontSize: 16, color: Colors.grey),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Expanded(
+                          flex: 8,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 40),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  "Payment Options",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey.shade700,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const Divider(),
+                                const Text("Credit / Debit Card"),
+                                const Divider(),
+                                const Text("Payment Getaways"),
+                                const Divider(),
+                                const Text("Cash On Delivery"),
+                                const Divider(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(child: Container()),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(30)),
+                                  ),
+                                ),
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Colors.blue,
+                                        Colors.blueAccent,
+                                        Colors.blue.shade200,
+                                      ],
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(30)),
+                                  ),
+                                  child: Container(
+                                    width: size.width * 0.5,
+                                    height: 54,
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Payment Amount',
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white
+                                                  .withOpacity(0.70)),
+                                        ),
+                                        const Text(
+                                          '₹150.00',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(30)),
+                                  ),
+                                ),
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Colors.blue.shade200,
+                                        Colors.blueAccent,
+                                        Colors.blue,
+                                      ],
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                        bottomRight: Radius.circular(30)),
+                                  ),
+                                  child: Container(
+                                    width: size.width * 0.5,
+                                    height: 54,
+                                    alignment: Alignment.center,
+                                    child: const Text(
+                                      'Pay',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: bottomNavBar(
+        onTap: (index) => setState(() => selectedIndex = index),
       ),
     );
   }
