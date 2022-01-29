@@ -75,8 +75,8 @@ class _MyCartProductState extends State<MyCartProduct> {
 
                       // the problem in the index it's = 0
                       // and it's not the index of the list
-                      widget.filterProductList[widget.itemIndex].productImage,
                       // _bloc.filterProductList[widget.itemIndex].productImage,
+                      widget.filterProductList[widget.itemIndex].productImage,
                       width: 60,
                       height: 60,
                     ),
@@ -131,7 +131,16 @@ class _MyCartProductState extends State<MyCartProduct> {
                     ),
                     Expanded(flex: 8, child: Container()),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          ///
+                          ///
+                          ///
+
+                          widget.filterProductList[widget.itemIndex]
+                              .productCount = 0;
+                        });
+                      },
                       icon: Icon(
                         Icons.clear,
                         color: Colors.red.shade600,

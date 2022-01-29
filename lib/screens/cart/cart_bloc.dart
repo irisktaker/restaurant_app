@@ -13,6 +13,14 @@ class CartScreenBloc {
     }
   }
 
+  void removeFilterList(List<ProductModel> productList) {
+    for (ProductModel product in productList) {
+      if (product.productCount == 0) {
+        filterProductList.remove(product);
+      }
+    }
+  }
+
   String calculatePrice(double productPrice, int productQuantity) {
     return (productPrice * productQuantity).toStringAsFixed(2);
   }

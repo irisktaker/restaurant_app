@@ -17,67 +17,93 @@ class PaymentScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back_rounded, color: Colors.grey.shade400),
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            width: size.width,
-            height: 200,
-            child: ListView(
-              children: [
-                SizedBox(
-                  width: size.width * 0.73,
-                  height: 170,
-                  child: PageView.builder(
+      body: Container(
+        width: size.width,
+        height: size.height,
+        color: Colors.green.shade100,
+        child: DefaultTextStyle(
+          style: const TextStyle(color: Colors.white),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  width: size.width,
+                  color: Colors.red.shade100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
                     itemCount: 3,
-                    controller:
-                        PageController(viewportFraction: 0.77, initialPage: 3),
                     itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFF354025), Color(0xFF553002)],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: size.width * 0.10,
-                  height: 5,
-                  child: PageView.builder(
-                    itemCount: 3,
-                    controller:
-                        PageController(viewportFraction: 0.10, initialPage: 3),
-                    itemBuilder: (context, index) {
-                      return Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFF354025), Color(0xFF553002)],
+                      return Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Container(
+                                  width: size.width - 80,
+                                  height: 180,
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue.shade400,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.topRight,
+                                        child: Text(paymentCard['paymentType']),
+                                      ),
+                                      const SizedBox(height: 16),
+                                      Text(paymentCard['cardNumber']),
+                                      Text(paymentCard['securityNum']),
+                                      const SizedBox(height: 26),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(paymentCard['cardHolder']),
+                                          Text(paymentCard['exDate']),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
+                              // Container(),
+                            ],
                           ),
-                        ),
+                        ],
                       );
                     },
                   ),
                 ),
-              ],
-            ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: size.width,
+                  color: Colors.yellow.shade100,
+                  child: Text(""),
+                ),
+              )
+            ],
           ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.green,
-          )
-        ],
+        ),
       ),
     );
   }
 }
+
+Map paymentCard = {
+  'paymentType': 'VISA',
+  'cardNumber': '1234   5678   9876   5432',
+  'securityNum': '123',
+  'cardHolder': 'James Born',
+  'exDate': '03/17',
+};

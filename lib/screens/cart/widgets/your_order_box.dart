@@ -1,13 +1,24 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:restaurant/screens/home/data/home_screen_data.dart';
 import 'package:restaurant/screens/payment/payment_screen.dart';
 import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
 
+import '../cart_bloc.dart';
 import 'your_orders_details_widget.dart';
 
+CartScreenBloc _bloc = CartScreenBloc();
+
 class YourOrderBox extends StatefulWidget {
-  const YourOrderBox({Key? key}) : super(key: key);
+  // int itemIndex;
+  List<ProductModel> products;
+
+  YourOrderBox({
+    Key? key,
+    // required this.itemIndex,
+    required this.products,
+  }) : super(key: key);
 
   @override
   _YourOrderBoxState createState() => _YourOrderBoxState();
