@@ -4,8 +4,10 @@ import 'package:restaurant/models/selected_index_screen.dart';
 import 'package:restaurant/utils/app_bar/custom_app_bar.dart';
 import 'package:restaurant/utils/bottom_navigation_bar/bottom_nav_bar.dart';
 
+import 'payment_success.dart';
+
 class PaymentScreen extends StatefulWidget {
-  PaymentScreen({Key? key}) : super(key: key);
+  const PaymentScreen({Key? key}) : super(key: key);
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -61,9 +63,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
             children: [
               Expanded(
                 flex: 2,
-                child: Container(
+                child: SizedBox(
                   width: size.width,
-                  // color: Colors.red.shade100,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -102,7 +103,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           enlargeCenterPage: true,
                           pageSnapping: true,
                           enableInfiniteScroll: false,
-                          initialPage: 1,
+                          initialPage: 0,
                           onPageChanged: (index, _) {
                             setState(() {
                               _currentIndex = index;
@@ -225,7 +226,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             ),
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const PaymentSuccessScreen(),
+                                    ),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.zero,
                                   shape: const RoundedRectangleBorder(
