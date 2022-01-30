@@ -9,9 +9,7 @@ selectedIndexScreen() {
   if (selectedIndex == 0) {
     return const HomePage();
   } else if (selectedIndex == 1) {
-    return CartScreen(
-      productList: smoothiesList,
-    );
+    return CartScreen(productList: smoothiesList);
   } else {
     return Container(
       color: Colors.green.shade200,

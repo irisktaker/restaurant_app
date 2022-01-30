@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
     ScrollController _scrollController = ScrollController();
 
     _bloc.filterList(productList);
-    _bloc.removeFilterList(productList);
+    // _bloc.removeFilterList(_bloc.filterProductList);
     _bloc.filterProductList;
 
     return Scaffold(
@@ -54,7 +54,6 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           YourOrderBox(
-            // itemIndex: index,
             products: _bloc.filterProductList,
           ),
         ],

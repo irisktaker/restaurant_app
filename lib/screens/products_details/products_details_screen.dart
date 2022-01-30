@@ -51,7 +51,7 @@ class _ProductsDetailsScreenState extends State<ProductsDetailsScreen> {
             ),
           ),
           const SizedBox(height: 18),
-          addToCartButton(context),
+          AddToCartButton(),
         ],
       ),
       bottomNavigationBar: bottomNavBar(

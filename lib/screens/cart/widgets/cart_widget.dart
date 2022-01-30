@@ -3,22 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/cart/cart_bloc.dart';
 import 'package:restaurant/screens/home/data/home_screen_data.dart';
-// class AddToCartProductContainer extends StatefulWidget {
-//   const AddToCartProductContainer({
-//     Key? key,
-//   }) : super(key: key);
-//   @override
-//   _AddToCartProductContainerState createState() =>
-//       _AddToCartProductContainerState();
-// }
-// class _AddToCartProductContainerState extends State<AddToCartProductContainer> {
-//   @override
-//   Widget build(BuildContext context) {
-//     ///
-//     ///
-//     Size size = MediaQuery.of(context).size;
-//   }
-// }
 
 CartScreenBloc _bloc = CartScreenBloc();
 
@@ -134,11 +118,18 @@ class _MyCartProductState extends State<MyCartProduct> {
                       onPressed: () {
                         setState(() {
                           ///
-                          ///
-                          ///
 
-                          widget.filterProductList[widget.itemIndex]
-                              .productCount = 0;
+                          // _bloc.removeItemFromProductList(widget
+                          //     .filterProductList[widget.itemIndex]
+                          //     .productCount);
+
+                          _bloc.removeItemFromProductList(widget.itemIndex);
+
+                          // widget.filterProductList[widget.itemIndex]
+                          //     .productCount = 0;
+
+                          // _bloc.removeFilterList(widget.filterProductList);
+                          // _bloc.removeFilterList(_bloc.filterProductList);
                         });
                       },
                       icon: Icon(

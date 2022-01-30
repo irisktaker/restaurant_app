@@ -8,26 +8,34 @@ import 'package:restaurant/utils/buttons/custom_elevated_button.dart';
 import '../cart_bloc.dart';
 import 'your_orders_details_widget.dart';
 
-CartScreenBloc _bloc = CartScreenBloc();
-
 class YourOrderBox extends StatefulWidget {
-  // int itemIndex;
   List<ProductModel> products;
 
-  YourOrderBox({
-    Key? key,
-    // required this.itemIndex,
-    required this.products,
-  }) : super(key: key);
+  YourOrderBox({Key? key, required this.products}) : super(key: key);
 
   @override
   _YourOrderBoxState createState() => _YourOrderBoxState();
 }
 
 class _YourOrderBoxState extends State<YourOrderBox> {
+  final CartScreenBloc _bloc = CartScreenBloc();
+  double discount = 1.10;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc.mainProductList = widget.products;
+    _bloc.filterList(widget.products);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    double billTotalPrice() {
+      setState(() {});
+      return _bloc.billTotal();
+    }
 
     return Container(
       width: size.width,
@@ -48,14 +56,22 @@ class _YourOrderBoxState extends State<YourOrderBox> {
             const SizedBox(height: 16),
             yourOrdersDetails(
               text: 'Bill Total',
-              price: '₹150.00',
+              price: billTotalPrice().toStringAsFixed(2),
             ),
             const Divider(height: 2),
-            yourOrdersDetails(text: 'Discount', price: '0.00'),
+            yourOrdersDetails(
+              text: 'Discount',
+              price: (billTotalPrice() <= 250
+                      ? discount = 1.10
+                      : (billTotalPrice() <= 500 || billTotalPrice() < 750)
+                          ? discount = 1.15
+                          : discount = 1.25)
+                  .toStringAsFixed(2),
+            ),
             const Divider(height: 2),
             yourOrdersDetails(
               text: 'Grand Total',
-              price: '₹150.00',
+              price: (billTotalPrice() / discount).toStringAsFixed(2),
               fontWeight: FontWeight.w900,
             ),
             const SizedBox(height: 24),
